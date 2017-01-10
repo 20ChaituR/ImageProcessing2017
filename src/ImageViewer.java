@@ -70,7 +70,7 @@ public class ImageViewer extends JPanel {
 	 * @param image the image to set
 	 */
 	public void setImage(Mat mat) {
-		this.image = toBufferedImage(mat);
+		image = matToBufferedImage(mat, image);
 	}
 	
 	/**  
@@ -103,6 +103,7 @@ public class ImageViewer extends JPanel {
 	            }  
 	            break;  
 	        default:  
+	        	System.out.println("Wrong number of channels");
 	            return null;  
 	        }  
 

@@ -6,6 +6,7 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.highgui.VideoCapture;
+import org.opencv.imgproc.Imgproc;
 
 
 /**
@@ -18,8 +19,8 @@ import org.opencv.highgui.VideoCapture;
  */
 public class Main {
 	
-	public static final int ROWS = 480;
-	public static final int COLS = 640;
+	public static final int ROWS = 960;
+	public static final int COLS = 1280;
 	
 	static VideoCapture cam;
 	static GRIPSelection grip;
@@ -35,15 +36,17 @@ public class Main {
 		viewer = new ImageViewer();
 		Mat mat = new Mat(ROWS, COLS, CvType.CV_64FC4);
 		while(true){
-			cam.retrieve(mat);
+			cam.read(mat);
 			viewer.setImage(mat);
+			viewer.repaint();
 			grip.process(mat);
-			/*ArrayList<MatOfPoint> contours = grip.getContours();
-			for(int i = 0; i < contours.size(); i++){
-				for(int j = i + 1; j < contours.size(); j++){
-					
+			ArrayList<MatOfPoint> contours = grip.getContours();
+			if(contours != null)
+				for(int i = 0; i < contours.size(); i++){
+					for(int j = i + 1; j < contours.size(); j++){
+						double error = Evaluator.calculateError(contours.get(i), contours.get(j));
+					}
 				}
-			}*/
 		}
 	}
 	
