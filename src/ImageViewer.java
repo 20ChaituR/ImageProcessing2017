@@ -34,7 +34,7 @@ public class ImageViewer extends JPanel {
 	 */
 	public ImageViewer() throws HeadlessException {
 		super();
-		JFrame frame = new JFrame();
+		JFrame frame = new JFrame("Professor Manning's Wonderful Copy+Paste Program");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(Main.COLS, Main.ROWS);
