@@ -25,6 +25,7 @@ public class Main {
 	static VideoCapture cam;
 	static GRIPSelection grip;
 	static ImageViewer viewer;
+	static MainEvaluator eval;
 	
 	/**
 	 * @param args
@@ -34,6 +35,7 @@ public class Main {
 		cam = new VideoCapture(0);
 		grip = new GRIPSelection();
 		viewer = new ImageViewer();
+		eval = new MainEvaluator();
 		Mat mat = new Mat(ROWS, COLS, CvType.CV_64FC4);
 		while(true){
 			cam.read(mat);
@@ -44,7 +46,7 @@ public class Main {
 			if(contours != null)
 				for(int i = 0; i < contours.size(); i++){
 					for(int j = i + 1; j < contours.size(); j++){
-						double error = Evaluator.calculateError(contours.get(i), contours.get(j));
+						double error = eval.calculateError(contours.get(i), contours.get(j));
 					}
 				}
 		}
