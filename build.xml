@@ -3,17 +3,16 @@
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="/Users/joelmanning/Documents/workspace/ImageProcessing2017/Viewer.jar">
+        <jar destfile="./Viewer.jar">
             <manifest>
                 <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
                 <attribute name="Rsrc-Main-Class" value="Main"/>
                 <attribute name="Class-Path" value="."/>
-                <attribute name="Rsrc-Class-Path" value="./ webcam-capture-0.3.11.jar opencv-2413.jar"/>
+                <attribute name="Rsrc-Class-Path" value="./ opencv-320.jar"/>
             </manifest>
             <zipfileset src="jar-in-jar-loader.zip"/>
-            <fileset dir="/Users/joelmanning/Documents/workspace/ImageProcessing2017/bin"/>
-            <zipfileset dir="/Users/joelmanning/Documents/workspace/ImageProcessing2017" includes="webcam-capture-0.3.11.jar"/>
-            <zipfileset dir="/Users/joelmanning/Documents/workspace/ImageProcessing2017" includes="opencv-2413.jar"/>
+            <fileset dir="./bin"/>
+            <zipfileset dir="/usr/local/share/OpenCV/java" includes="opencv-320.jar"/>
         </jar>
     </target>
 </project>
