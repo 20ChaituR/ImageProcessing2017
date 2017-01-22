@@ -3,15 +3,11 @@ import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 
 /**
- * 
- */
-
-/**
  * @author joelmanning
  *
  */
 public class RectangularityEvaluator extends Evaluator {
-	
+
 	/* (non-Javadoc)
 	 * @see Evaluator#calculateError(org.opencv.core.MatOfPoint, org.opencv.core.MatOfPoint)
 	 */
@@ -23,5 +19,5 @@ public class RectangularityEvaluator extends Evaluator {
 		double ba = ar.area();
 		return Math.abs(aa - Imgproc.contourArea(a))/aa + Math.abs(ba - Imgproc.contourArea(b))/ba;
 	}
-	
+
 }

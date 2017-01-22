@@ -1,10 +1,6 @@
 import org.opencv.core.MatOfPoint;
 
 /**
- * 
- */
-
-/**
  * @author joelmanning
  *
  */

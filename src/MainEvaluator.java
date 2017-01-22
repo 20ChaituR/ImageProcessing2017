@@ -1,10 +1,6 @@
 import org.opencv.core.MatOfPoint;
 
 /**
- * 
- */
-
-/**
  * @author joelmanning
  *
  */
@@ -23,10 +19,10 @@ public class MainEvaluator extends Evaluator {
 		}
 		return error;
 	}
-	
+
 	public MainEvaluator(){
 		weights = new double[] { 1 };
 		subs = new Evaluator[] { new RatioEvaluator() };
 	}
-	
+
 }

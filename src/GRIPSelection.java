@@ -4,10 +4,6 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 
 /**
- * 
- */
-
-/**
  * @author joelmanning
  *
  */
@@ -18,7 +14,7 @@ public class GRIPSelection {
 	 */
 	public void process(Mat mat) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -28,5 +24,5 @@ public class GRIPSelection {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

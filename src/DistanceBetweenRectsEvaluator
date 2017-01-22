@@ -2,10 +2,6 @@ import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
 
 /**
- *
- */
-
-/**
  * @author NathanielMelisso
  *
  */

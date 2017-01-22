@@ -10,11 +10,6 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.videoio.VideoCapture;
 
-
-/**
- *
- */
-
 /**
  * @author joelmanning
  *

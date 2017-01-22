@@ -9,10 +9,6 @@ import javax.swing.JPanel;
 import org.opencv.core.Mat;
 
 /**
- *
- */
-
-/**
  * @author joelmanning
  *
  */
