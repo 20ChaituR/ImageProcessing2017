@@ -28,7 +28,7 @@ public class Main {
 	static MainEvaluator eval;
 	
 	/**
-	 * @param argsß
+	 * @param args
 	 */
 	public static void main(String[] args) {
 		try {
