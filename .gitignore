@@ -1,1 +1,5 @@
 /bin/
+
+# As the opencv jar is built, it varies from platform to platform. Thus, it is better to copy your
+# own version into the jars/ directory rather than using a version stored on GitHub.
+jars/opencv*.jar

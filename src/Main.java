@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+import org.freedesktop.gstreamer.Caps;
+import org.freedesktop.gstreamer.Gst;
+import org.freedesktop.gstreamer.Pipeline;
+
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -17,8 +21,8 @@ import org.opencv.videoio.VideoCapture;
  */
 public class Main {
 
-	public static final int ROWS = 960;
-	public static final int COLS = 1280;
+	public static int width;
+	public static int height;
 
 	static VideoCapture cam;
 	static GRIPSelection grip;
@@ -38,11 +42,23 @@ public class Main {
 				System.out.println("Could not find an opencv native library");
 			}
 		}
-		cam = new VideoCapture(0);
+
+		Gst.init();
+
+		Pipeline mainPipeline = GstreamerControl.webcamStreamingPipeline();
+		mainPipeline.play();
+
+		Caps caps = GstreamerControl.getSinkCaps(mainPipeline.getElementByName("pipesink"));
+		String stringCaps = GstreamerControl.makeCommandLineParsable(caps);
+
+		width = caps.getStructure(0).getInteger("width");
+		height = caps.getStructure(0).getInteger("height");
+
+		cam = new VideoCapture(GstreamerControl.webcamLoopbackCommand(stringCaps));
 		grip = new GRIPSelection();
 		viewer = new ImageViewer();
 		eval = new MainEvaluator();
-		Mat mat = new Mat(ROWS, COLS, CvType.CV_64FC4);
+		Mat mat = new Mat(height, width, CvType.CV_64FC4);
 		while(true){
 			cam.read(mat);
 			viewer.setImage(mat);
