@@ -5,6 +5,9 @@ import org.freedesktop.gstreamer.Pipeline;
 import org.freedesktop.gstreamer.Structure;
 import org.freedesktop.gstreamer.Structure.InvalidFieldException;
 
+/**
+ * @author Ryan Adolf
+ */
 public class GstreamerControl {
 
 	public static final String SOCKET_PATH = "/tmp/foo";

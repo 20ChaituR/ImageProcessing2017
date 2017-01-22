@@ -12,7 +12,7 @@ import org.opencv.videoio.VideoCapture;
 
 /**
  * @author joelmanning
- *
+ * @author Ryan Adolf
  */
 public class Main {
 
