@@ -28,10 +28,18 @@ public class Main {
 	static MainEvaluator eval;
 	
 	/**
-	 * @param args
+	 * @param argsß
 	 */
 	public static void main(String[] args) {
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		try {
+			System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		} catch (Exception e){
+			try {
+				System.loadLibrary("opencv_java320");
+			} catch (Exception e2){
+				System.out.println("Could not find an opencv native library");
+			}
+		}
 		cam = new VideoCapture(0);
 		grip = new GRIPSelection();
 		viewer = new ImageViewer();
