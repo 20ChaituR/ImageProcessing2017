@@ -16,8 +16,8 @@ import org.opencv.videoio.VideoCapture;
  */
 public class Main {
 
-	public static int width;
-	public static int height;
+	private static int width;
+	private static int height;
 
 	static VideoCapture cam;
 	static GRIPSelection grip;
@@ -51,7 +51,7 @@ public class Main {
 
 		cam = new VideoCapture(GstreamerControl.webcamLoopbackCommand(stringCaps));
 		grip = new GRIPSelection();
-		viewer = new ImageViewer();
+		viewer = new ImageViewer(width, height);
 		eval = new MainEvaluator();
 		Mat mat = new Mat(height, width, CvType.CV_64FC4);
 		while(true){

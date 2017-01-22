@@ -19,20 +19,20 @@ public class ImageViewer extends JPanel {
 	 * @param image
 	 * @throws HeadlessException
 	 */
-	public ImageViewer(BufferedImage image) throws HeadlessException {
-		this();
+	public ImageViewer(BufferedImage image, int width, int height) throws HeadlessException {
+		this(width, height);
 		this.image = image;
 	}
 
 	/**
 	 * @throws HeadlessException
 	 */
-	public ImageViewer() throws HeadlessException {
+	public ImageViewer(int width, int height) throws HeadlessException {
 		super();
 		JFrame frame = new JFrame("Professor Manning's Wonderful Copy+Paste Program");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(Main.COLS, Main.ROWS);
+		frame.setSize(width, height);
 		frame.add(this);
 	}
 
