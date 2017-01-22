@@ -16,7 +16,7 @@ public class RectangularityEvaluator extends Evaluator {
 		Rect ar = Imgproc.boundingRect(a);
 		Rect br = Imgproc.boundingRect(b);
 		double aa = ar.area();
-		double ba = ar.area();
+		double ba = br.area();
 		return Math.abs(aa - Imgproc.contourArea(a))/aa + Math.abs(ba - Imgproc.contourArea(b))/ba;
 	}
 
