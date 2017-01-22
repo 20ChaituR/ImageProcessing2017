@@ -1,6 +1,5 @@
 import java.awt.Graphics;
 import java.awt.HeadlessException;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 
@@ -10,7 +9,7 @@ import javax.swing.JPanel;
 import org.opencv.core.Mat;
 
 /**
- * 
+ *
  */
 
 /**
@@ -40,8 +39,8 @@ public class ImageViewer extends JPanel {
 		frame.setSize(Main.COLS, Main.ROWS);
 		frame.add(this);
 	}
-	
-	
+
+
 
 	/* (non-Javadoc)
 	 * @see java.awt.Container#paintComponents(java.awt.Graphics)
@@ -65,59 +64,59 @@ public class ImageViewer extends JPanel {
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}
-	
+
 	/**
 	 * @param image the image to set
 	 */
 	public void setImage(Mat mat) {
 		image = matToBufferedImage(mat, image);
 	}
-	
-	/**  
-	 * Converts/writes a Mat into a BufferedImage.  
-	 *  
-	 * @param matrix Mat of type CV_8UC3 or CV_8UC1  
-	 * @return BufferedImage of type TYPE_3BYTE_BGR or TYPE_BYTE_GRAY  
-	 */  
+
+	/**
+	 * Converts/writes a Mat into a BufferedImage.
+	 *
+	 * @param matrix Mat of type CV_8UC3 or CV_8UC1
+	 * @return BufferedImage of type TYPE_3BYTE_BGR or TYPE_BYTE_GRAY
+	 */
 	public static BufferedImage matToBufferedImage(Mat matrix, BufferedImage bimg)
 	{
-	    if ( matrix != null ) { 
-	        int cols = matrix.cols();  
-	        int rows = matrix.rows();  
-	        int elemSize = (int)matrix.elemSize();  
-	        byte[] data = new byte[cols * rows * elemSize];  
-	        int type;  
-	        matrix.get(0, 0, data);  
-	        switch (matrix.channels()) {  
-	        case 1:  
-	            type = BufferedImage.TYPE_BYTE_GRAY;  
-	            break;  
-	        case 3:  
-	            type = BufferedImage.TYPE_3BYTE_BGR;  
-	            // bgr to rgb  
-	            byte b;  
-	            for(int i=0; i<data.length; i=i+3) {  
-	                b = data[i];  
-	                data[i] = data[i+2];  
-	                data[i+2] = b;  
-	            }  
-	            break;  
-	        default:  
+	    if ( matrix != null ) {
+	        int cols = matrix.cols();
+	        int rows = matrix.rows();
+	        int elemSize = (int)matrix.elemSize();
+	        byte[] data = new byte[cols * rows * elemSize];
+	        int type;
+	        matrix.get(0, 0, data);
+	        switch (matrix.channels()) {
+	        case 1:
+	            type = BufferedImage.TYPE_BYTE_GRAY;
+	            break;
+	        case 3:
+	            type = BufferedImage.TYPE_3BYTE_BGR;
+	            // bgr to rgb
+	            byte b;
+	            for(int i=0; i<data.length; i=i+3) {
+	                b = data[i];
+	                data[i] = data[i+2];
+	                data[i+2] = b;
+	            }
+	            break;
+	        default:
 	        	System.out.println("Wrong number of channels");
-	            return null;  
-	        }  
+	            return null;
+	        }
 
 	        // Reuse existing BufferedImage if possible
 	        if (bimg == null || bimg.getWidth() != cols || bimg.getHeight() != rows || bimg.getType() != type) {
 	            bimg = new BufferedImage(cols, rows, type);
-	        }        
+	        }
 	        bimg.getRaster().setDataElements(0, 0, cols, rows, data);
 	    } else { // mat was null
 	        bimg = null;
 	    }
-	    return bimg;  
-	}   
-	
+	    return bimg;
+	}
+
 	public BufferedImage toBufferedImage(Mat m){
 	      int type = BufferedImage.TYPE_BYTE_GRAY;
 	      if ( m.channels() > 1 ) {
@@ -128,7 +127,7 @@ public class ImageViewer extends JPanel {
 	      m.get(0,0,b); // get all the pixels
 	      BufferedImage image = new BufferedImage(m.cols(),m.rows(), type);
 	      final byte[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
-	      System.arraycopy(b, 0, targetPixels, 0, b.length);  
+	      System.arraycopy(b, 0, targetPixels, 0, b.length);
 	      return image;
 
 	  }

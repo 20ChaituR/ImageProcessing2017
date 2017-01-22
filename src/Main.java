@@ -1,4 +1,3 @@
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import org.opencv.core.Core;
@@ -6,11 +5,10 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.videoio.VideoCapture;
-import org.opencv.imgproc.Imgproc;
 
 
 /**
- * 
+ *
  */
 
 /**
@@ -18,15 +16,15 @@ import org.opencv.imgproc.Imgproc;
  *
  */
 public class Main {
-	
+
 	public static final int ROWS = 960;
 	public static final int COLS = 1280;
-	
+
 	static VideoCapture cam;
 	static GRIPSelection grip;
 	static ImageViewer viewer;
 	static MainEvaluator eval;
-	
+
 	/**
 	 * @param args
 	 */
@@ -59,5 +57,5 @@ public class Main {
 				}
 		}
 	}
-	
+
 }
