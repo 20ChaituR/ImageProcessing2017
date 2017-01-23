@@ -1,10 +1,11 @@
  <project name="ImageProcessing2017" basedir="." default="rebuild-run">
 
        <property name="src.dir"     value="src"/>
-
+       <property name="jar.dir"     value="jars"/>
        <property name="lib.dir"     value="${ocvJarDir}"/>
        <path id="classpath">
            <fileset dir="${lib.dir}" includes="**/*.jar"/>
+           <fileset dir="${jar.dir}" includes="**/*.jar"/>
        </path>
 
        <property name="build.dir"   value="build"/>
