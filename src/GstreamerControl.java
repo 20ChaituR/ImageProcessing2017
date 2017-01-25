@@ -25,7 +25,7 @@ public class GstreamerControl {
 							   // Copy the stream to two different outputs
 							 + "tee name=t ! queue ! "
 							   // Encode one output to h.264
-							 + "omxh264enc ! omxh264enc ! h264parse ! "
+							 + "omxh264enc ! h264parse ! "
 							   // Convert to rtp packets
 							 + "rtph264pay pt=96 config-interval=5 ! "
 							   // Stream over udp
