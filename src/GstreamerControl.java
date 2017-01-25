@@ -48,7 +48,7 @@ public class GstreamerControl {
 	public static String webcamLoopbackCommand(String caps) {
 		return ("shmsrc socket-path=" + SOCKET_PATH + " ! "
 			  + caps + " ! "
-			  + "videoconvert"
+			  + "videoconvert ! appsink"
 		);
 	}
 
