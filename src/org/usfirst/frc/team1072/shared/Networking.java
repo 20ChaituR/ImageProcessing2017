@@ -14,6 +14,7 @@ public class Networking {
 	public static final String ROBORIO_IP = generateIP(2);
 	public static final String RASPI_IP = generateIP(6);
 	public static final int ROBORIO_PORT = 5800;
+	public static final int RASPI_REGISTER = 5999;
 	public static final int RASPI_STREAM = 6000;
 	public static final int RASPI_PROCESSED = 6001;
 	

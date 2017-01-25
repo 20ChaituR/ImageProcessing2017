@@ -19,7 +19,7 @@ public class GstreamerControl {
 	 * outputs both an h.264-encoded stream and a raw stream to a shared memory
 	 * location.
 	 */
-	public static Pipeline webcamStreamingPipeline() {
+	public static Pipeline webcamStreamingPipeline(String host, int port) {
 		return Pipeline.launch(// Take in stream from webcam
 							   "v4l2src ! video/x-raw, width=640,height=480 ! "
 							   // Copy the stream to two different outputs
@@ -29,7 +29,35 @@ public class GstreamerControl {
 							   // Convert to rtp packets
 							 + "rtph264pay pt=96 config-interval=5 ! "
 							   // Stream over udp
-							 + "udpsink host="+STREAM_HOST+" port="+STREAM_PORT+" "
+							 + "udpsink host=" + host + " port=" + port + " "
+							   // Use other output
+							 + "t. ! queue ! "
+							   // Put output in a shared memory location
+							 + "shmsink name=pipesink socket-path=" + SOCKET_PATH + " "
+							 + "sync=true wait-for-connection=false shm-size=10000000"
+		);
+	}
+	
+	public static Pipeline webcamStreamingPipeline() {
+		return webcamStreamingPipeline(STREAM_HOST, STREAM_PORT);
+	}
+	
+	/**
+	 * Creates the Gstreamer pipeline that takes in the vision webcam stream and
+	 * outputs both an h.264-encoded stream and a raw stream to a shared memory
+	 * location.
+	 */
+	public static Pipeline webcamStreamingTCPServer(int port) {
+		return Pipeline.launch(// Take in stream from webcam
+							   "v4l2src ! video/x-raw, width=640,height=480 ! "
+							   // Copy the stream to two different outputs
+							 + "tee name=t ! queue ! "
+							   // Encode one output to h.264
+							 + "omxh264enc ! h264parse ! "
+							   // Convert to rtp packets
+							 + "rtph264pay pt=96 config-interval=5 ! "
+							   // Stream over udp
+							 + "tcpserversink port=" + port + " "
 							   // Use other output
 							 + "t. ! queue ! "
 							   // Put output in a shared memory location

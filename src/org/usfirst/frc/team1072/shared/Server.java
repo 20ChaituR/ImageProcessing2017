@@ -116,6 +116,14 @@ public class Server extends Thread {
 		public int hashCode() {
 			return s.getPort() * 31 + s.getInetAddress().hashCode();
 		}
+
+		/* (non-Javadoc)
+		 * @see org.usfirst.frc.team1072.shared.Respondable#getIP()
+		 */
+		@Override
+		public String getIP() {
+			return s.getInetAddress().getHostAddress();
+		}
 	}
 	
 }

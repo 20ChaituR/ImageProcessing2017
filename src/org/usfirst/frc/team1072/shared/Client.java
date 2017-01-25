@@ -76,4 +76,12 @@ public class Client extends Thread implements Respondable {
 	public void addListener(ObjectListener listener){
 		listeners.add(listener);
 	}
+
+	/* (non-Javadoc)
+	 * @see org.usfirst.frc.team1072.shared.Respondable#getIP()
+	 */
+	@Override
+	public String getIP() {
+		return s.getInetAddress().getHostAddress();
+	}
 }

@@ -9,4 +9,5 @@ package org.usfirst.frc.team1072.shared;
  */
 public interface Respondable {
 	public void send(Object... objs);
+	public String getIP();
 }
