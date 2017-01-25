@@ -43,6 +43,10 @@ public class Main {
 		Pipeline mainPipeline = GstreamerControl.webcamStreamingPipeline();
 		mainPipeline.play();
 
+		if (!mainPipeline.isPlaying()) {
+			throw new RuntimeException("Gstreamer main pipeline is not playing");
+		}
+
 		Caps caps = GstreamerControl.getSinkCaps(mainPipeline.getElementByName("pipesink"));
 		String stringCaps = GstreamerControl.makeCommandLineParsable(caps);
 
