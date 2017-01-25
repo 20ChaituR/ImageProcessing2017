@@ -1,5 +1,6 @@
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
 
 /**
  * @author NathanielMelisso
@@ -14,7 +15,8 @@ public class DistanceBetweenRectsEvaluator extends Evaluator {
 	public double calculateError(MatOfPoint a, MatOfPoint b) {
 		Rect ar = Imgproc.boundingRect(a);
 		Rect br = Imgproc.boundingRect(b);
-    Rect Dist = new Rect(a.tl, b.br)
+    Rect dist = new Rect(a.tl, b.br);
+    return Math.abs((dist.getWidth() - 10.25) + (dist.getHeight() - 5));
 	}
 
 }
