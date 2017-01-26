@@ -1,5 +1,8 @@
+import java.util.HashMap;
+
 import messages.StreamToMe;
 
+import org.freedesktop.gstreamer.Pipeline;
 import org.usfirst.frc.team1072.shared.Networking;
 import org.usfirst.frc.team1072.shared.ObjectListener;
 import org.usfirst.frc.team1072.shared.Respondable;
@@ -15,6 +18,9 @@ import org.usfirst.frc.team1072.shared.Server;
  */
 public class GStreamServerMain implements ObjectListener {
 	
+	private Server registration;
+	private HashMap<String, Pipeline> pipes;
+	
 	/**
 	 * @param args
 	 */
@@ -26,7 +32,8 @@ public class GStreamServerMain implements ObjectListener {
 	 * 
 	 */
 	private void run() {
-		Server registration = new Server(Networking.RASPI_REGISTER);
+		pipes = new HashMap<String, Pipeline>();
+		registration = new Server(Networking.RASPI_REGISTER);
 		registration.addListener(this);
 	}
 
@@ -38,7 +45,10 @@ public class GStreamServerMain implements ObjectListener {
 		if(obj instanceof StreamToMe){
 			int port = ((StreamToMe) obj).getPort();
 			String ip = source.getIP();
-			GstreamerControl.webcamStreamingPipeline(ip, port);
+			if(pipes.containsKey(ip)){
+				return;
+			}
+			pipes.put(ip, GstreamerControl.webcamStreamingPipeline(ip, port));
 		}
 	}
 	
