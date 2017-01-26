@@ -1,0 +1,3 @@
+[submodule "src/org/usfirst/frc/team1072/Shared"]
+	path = src/org/usfirst/frc/team1072/Shared
+	url = https://github.com/HarkerRobo/Shared
